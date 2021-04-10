@@ -3,6 +3,7 @@ import styles from '../../styles/Home.module.css';
 import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons'
+import Link  from 'next/link';
 
 export default function SideNavBar() {
 
@@ -26,10 +27,29 @@ export default function SideNavBar() {
                 <a onClick={closeSideNav} className={styles.closeSide}>
                     <FontAwesomeIcon icon={faTimes} />
                 </a>
-                
-                    <a href=""> Profile </a>
-                    <a href=""> Budget Plan </a>
-                    <a href=""> Sign Out </a>
+
+                <Link href="/categories">
+                    <a onClick={closeSideNav}> Categories </a>
+                </Link>
+                <Link href="/transaction">
+                    <a onClick={closeSideNav}> Transaction History </a>
+                </Link>
+                <Link href="">
+                    <a href=""> Monthly Expense </a>
+                </Link>
+                <Link href="">
+                    <a href=""> Monthly Income </a>
+                </Link>
+                <Link href="">
+                    <a href=""> Trend </a>
+                </Link>
+                <Link href="">
+                    <a href=""> Breakdown </a>
+                </Link>
+                <Link href="/logout">
+                    <a > Sign Out </a>
+                </Link>
+                    
             </div>
         </Container>
         </React.Fragment>
