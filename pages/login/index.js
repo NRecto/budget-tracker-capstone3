@@ -63,7 +63,10 @@ export default function index() {
                         text: "Thank you for logging in!"
                     })
                     
-                    Router.push('/')
+                    Router.push({
+                        pathname: 'user/[id]',
+                        query: { id: data._id}
+                    })
 
                 })
                 
@@ -146,7 +149,7 @@ export default function index() {
                 id: data._id,
                 isAdmin: data.isAdmin
             })
-            Router.push('/')
+            Router.push(`/user/${data._id}`)
         })
     }
 

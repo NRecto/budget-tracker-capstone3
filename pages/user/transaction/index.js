@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { Container, Table, Form } from 'react-bootstrap';
 import Link from 'next/link';
-import UserContext from '../../UserContext';
+import UserContext from '../../../UserContext';
 
 export default function index({data}) {
 
@@ -53,7 +53,7 @@ export default function index({data}) {
         <React.Fragment>
         <Container>
             <h1>Transaction History</h1>
-            <Link href="/transaction/new" >
+            <Link href="/user/transaction/new" >
                 <a className="btn btn-primary">Add Transaction</a>
             </Link>
             <Form>
