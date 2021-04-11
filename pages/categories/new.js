@@ -15,7 +15,8 @@ export default function newCategory () {
 
     function addNewCategory(e){
         e.preventDefault();
-        fetch('http://localhost:4000/api/category', {
+        if( type !== true ){
+            fetch('http://localhost:4000/api/category', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,26 +26,28 @@ export default function newCategory () {
                 name,
                 type
             })
-        })
-        .then( res => res.json() )
-        .then( data => {
-            if(!data) {
-                Swal.fire(
-                    'Error!',
-                    'Adding Catergory Failed',
-                    'error'
-                )
-            } else {
-                Swal.fire(
-                    'Success!',
-                    'Successfully Added Catergory.',
-                    'success'
-                )
-                .then(
-                    Router.push('/categories')
-                )
-            }
-        })
+            })
+            .then( res => res.json() )
+            .then( data => {
+                if(!data) {
+                    Swal.fire(
+                        'Error!',
+                        'Adding Catergory Failed',
+                        'error'
+                    )
+                } else {
+                    Swal.fire(
+                        'Success!',
+                        'Successfully Added Catergory.',
+                        'success'
+                    )
+                    .then(
+                        Router.push('/categories')
+                    )
+                }
+            })
+        }
+        
     };
     
     return (

@@ -1,34 +1,37 @@
-import Link  from 'next/link';
-import React from 'react';
-import {Container, Row, Col, Button} from 'react-bootstrap'
-import styles from '../styles/Home.module.css'
+import React, { useContext } from 'react';
+import UserContext from '../UserContext';
+import Landing from './components/Landing';
+import Profile from './components/Profile';
 
 
-export default function Home() {
 
+export default function Home({data}) {
+ console.log(data)
+  const {user} = useContext(UserContext);
+  
   return (
     <React.Fragment>
-    <div className={styles.body} >
-      <Container>
-
-      <Row>
-        <Col className={styles.landing_header}>
-          <h1>BRAAAP ==</h1>
-          <p>BUDGET YOUR TRAVEL AHEAD OF TIME  |  HAVE A STRESS FREE VACATION  |  MAXIMIZE YOUR MONEY (TYPE EFFECT)</p>
-        </Col>
-        <Col lg={12} className={styles.home_button}>
-            <Link href="/login" >
-            <a className="btn btn-outline-light">Login</a>
-            </Link>
-            <Link href="/register" >
-            <a className="btn btn-outline-primary ml-3">
-              Sign Up
-            </a>
-            </Link>
-        </Col>
-      </Row>
-    </Container>
-    </div>
+      {
+        user.id !== null
+        ? <Profile />
+        : <Landing />
+      }
+      
     </React.Fragment>
   )
 }
+
+// export async function getServerSideProps() {
+//   const res = await fetch(`http://localhost:4000/api/users/details-landing`)
+//   const data = await res.json()
+
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     }
+//   }
+
+//   return {
+//     props: { data }, // will be passed to the page component as props
+//   }
+// }

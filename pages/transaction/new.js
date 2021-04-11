@@ -40,38 +40,49 @@ export default function newTransaction({data}){
 
     function addNewTransaction(e) {
         e.preventDefault();
-        fetch('http://localhost:4000/api/ledger', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                name,
-                type,
-                amount,
-                description
+        if( type !== true && name !== true) {
+            
+            fetch('http://localhost:4000/api/ledger', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    name,
+                    type,
+                    amount,
+                    description
+                })
             })
-        })
-        .then( res => res.json() )
-        .then( data => {
-            if(!data) {
-                Swal.fire(
-                    'Error!',
-                    'Adding New Transaction Failed',
-                    'error'
-                )
-            } else {
-                Swal.fire(
-                    'Success!',
-                    'Successfully Added New Transaction.',
-                    'success'
-                )
-                .then(
-                    Router.push('/transaction')
-                )
-            }
-        })
+            .then( res => res.json() )
+            .then( data => {
+                if(!data) {
+                    Swal.fire(
+                        'Error!',
+                        'Adding New Transaction Failed',
+                        'error'
+                    )
+                } else {
+                    Swal.fire(
+                        'Success!',
+                        'Successfully Added New Transaction.',
+                        'success'
+                    )
+                    .then(
+                        Router.push('/transaction')
+                    )
+                }
+            })
+            
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'Please Fill up all required fields.',
+                icon: 'error'
+            })
+        }
+        
     }
     
     return(
@@ -86,6 +97,7 @@ export default function newTransaction({data}){
                     className="w-75"
                     value={type}
                     onChange={ (e) => setType(e.target.value)}
+                    required
                     >
                         <option value='true' disabled>Select</option>
                         <option>Income</option>
@@ -101,6 +113,7 @@ export default function newTransaction({data}){
                             className="w-75"
                             value={type}
                             onChange={ (e) => setType(e.target.value)}
+                            required
                             >
                                 <option value='true' disabled>Select</option>
                             </Form.Control>
@@ -114,6 +127,7 @@ export default function newTransaction({data}){
                         className="w-75"
                         value={name}
                         onChange={ (e) => setName(e.target.value)}
+                        required
                         >
                             <option value='true' disabled>Select</option>
                             {optionIncome}
@@ -126,6 +140,7 @@ export default function newTransaction({data}){
                         className="w-75"
                         value={name}
                         onChange={ (e) => setName(e.target.value)}
+                        required
                         >
                             <option value='true' disabled>Select</option>
                             {optionExpense}

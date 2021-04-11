@@ -54,6 +54,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 92vh;
+  color: white;
   }
 .landing_header {
   display: flex;
