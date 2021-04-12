@@ -44,7 +44,7 @@ export default function index({data}) {
     })
 
     const [type, setType] =useState('Select All');
-    console.log((type))
+    
     useEffect( () => {
 
     }, [type])

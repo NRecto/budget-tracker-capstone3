@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap'
-import styles from '../../styles/Home.module.css'
+import styles from '../styles/Home.module.css'
 // import UserContext from '../../UserContext';
 
 export default function Profile() {

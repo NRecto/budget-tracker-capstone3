@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css';
 import React, { useState, useEffect } from 'react';
-import SideNavBar from './components/SideNavbar';
+import SideNavBar from '../components/SideNavbar';
 import { UserProvider } from '../UserContext';
 
 

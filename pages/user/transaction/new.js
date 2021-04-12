@@ -70,7 +70,7 @@ export default function newTransaction({data}){
                         'success'
                     )
                     .then(
-                        Router.push('/transaction')
+                        Router.push('/user/transaction')
                     )
                 }
             })

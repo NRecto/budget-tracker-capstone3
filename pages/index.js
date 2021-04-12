@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import UserContext from '../UserContext';
-
+import Profile from '../components/Profile';
+import Landing from '../components/Landing';
 
 
 
@@ -13,11 +14,11 @@ export default function Home() {
     <React.Fragment>
       {
         user.id !== null
-        ? 
-        : <
+        ? <Profile />
+        : <Landing />
       }
       
-      <Land
+ 
     </React.Fragment>
   )
 }
