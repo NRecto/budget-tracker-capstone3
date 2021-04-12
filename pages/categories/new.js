@@ -29,10 +29,11 @@ export default function newCategory () {
             })
             .then( res => res.json() )
             .then( data => {
-                if(!data) {
+                console.log(data.err)
+                if(data.err === 'error') {
                     Swal.fire(
                         'Error!',
-                        'Adding Catergory Failed',
+                        'Catergory Name already exist.',
                         'error'
                     )
                 } else {

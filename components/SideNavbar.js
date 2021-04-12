@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons'
 import Link  from 'next/link';
-import Router from 'next/router';
+// import Router from 'next/router';
 import UserContext from '../UserContext';
 
 export default function SideNavBar() {
@@ -23,7 +23,7 @@ export default function SideNavBar() {
         <React.Fragment>
         <div className={styles.topNav}>
             <a onClick={openSideNav} className={styles.openSide}>
-                <FontAwesomeIcon icon={faBars} />
+                <FontAwesomeIcon icon={faBars} className={styles.faBars}/>
             </a>
         </div>
         <Container>

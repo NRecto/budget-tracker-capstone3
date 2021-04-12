@@ -13,15 +13,27 @@
   color: #ffffff;
   text-align: center;
 }
-  
+.faBars{
+  color: #000;
+  margin: 10% ;
+}
 .topNav {
-  height: 8vh;
+  margin: 2%;
+  position: fixed; 
+  z-index: 1; 
+  transition: 0.3s ease;
+}
+.topNav:hover {
   padding: 1% 2%;
-  background-color: #1e2a32;
+  position: fixed; 
+  z-index: 1; 
+  transform: scale(1.1,1.1);
 }
 .openSide {
+  display: flex;
+  justify-content: center;
   background-color: transparent;
-  border: 1px solid #ffffff;
+  border: 1px solid #000;
   color: #ffffff;
   padding: 5px 10px;
   border-radius: 5px;
@@ -33,7 +45,6 @@
   color: #1e2a32;
 }
 .closeSide {
-  
   background-color: transparent;
   border: none;
   text-align: end;
@@ -53,7 +64,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 92vh;
+  height: 100vh;
   color: white;
   }
 .landing_header {
@@ -78,4 +89,38 @@
 .landing_header p {
   width: 50vw;
   text-align: center;
+}
+
+/*Profile  */
+.profileBodyCont{
+display: block;
+justify-content: center;
+}
+.profileBody{
+  display: flex;
+  justify-content:space-between;
+  text-align: center;
+  padding-top: 5vh;
+}
+
+.profile{
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  margin: 0%, 3%;
+}
+.transaction{
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+}
+.addTransaction{
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+}
+.addTransaction Form{
+  padding: 3%;
+  text-align: left;
+  
 }
