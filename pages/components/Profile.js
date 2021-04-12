@@ -1,12 +1,13 @@
 import React from 'react';
-import {Container, Row, Col, Button} from 'react-bootstrap'
+import {Container, Row, Col} from 'react-bootstrap'
 import styles from '../../styles/Home.module.css'
 // import UserContext from '../../UserContext';
 
-export default function Profile({userData}) {
+export default function Profile() {
 
 
   return (
+
     <React.Fragment>
       <div className={styles.body} >
         <Container>

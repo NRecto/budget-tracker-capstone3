@@ -1,6 +1,5 @@
 import React from 'react';
 import Profile from '../components/profile';
-import SideNavBar from '../components/SideNavbar';
 
 export default function index({user}) {
 	console.log(user)
@@ -42,3 +41,4 @@ export async function getStaticProps({params}){
 		}
 	}
 }
+
