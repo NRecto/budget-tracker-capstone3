@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Profile from '../../components/Profile';
-import {Container, Row, Col, Form, Button} from 'react-bootstrap'
-import styles from '../../styles/Home.module.css'
+import {Container, Row, Col, Form, Button} from 'react-bootstrap';
+import styles from '../../styles/Home.module.css';
+import Swal from 'sweetalert2';
+import Router from 'next/router';
 // import UserContext from '../../UserContext';
 
 export default function index({user, userTransaction, userCategory}) {

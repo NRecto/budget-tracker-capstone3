@@ -50,10 +50,10 @@ export default function SideNavBar() {
                             <Link href="/user/transaction">
                                 <a onClick={closeSideNav}> Transaction History </a>
                             </Link>
-                            <Link href="">
+                            <Link href="/user/charts/monthly-expense">
                                 <a onClick={closeSideNav}> Monthly Expense </a>
                             </Link>
-                            <Link href="">
+                            <Link href="/user/charts/monthly-income">
                                 <a onClick={closeSideNav}> Monthly Income </a>
                             </Link>
                             <Link href="">
