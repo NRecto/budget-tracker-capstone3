@@ -244,7 +244,6 @@ export async function getStaticProps({params}){
 	const res2 = await fetch(`http://localhost:4000/api/category`)
     const categoryData = await res2.json();
 	const userCategory = categoryData.filter( user => user.user === params.id)
-	console.log(userCategory)
 	return {
 		props : {
 			user,
