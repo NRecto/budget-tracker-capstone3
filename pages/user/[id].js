@@ -82,9 +82,6 @@ export default function index({user, userTransaction, userCategory}) {
                         'Successfully Added New Transaction.',
                         'success'
                     )
-                    .then(
-                        Router.push('/user/transaction')
-                    )
                 }
             })
             

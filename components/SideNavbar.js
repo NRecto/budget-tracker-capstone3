@@ -56,7 +56,7 @@ export default function SideNavBar() {
                             <Link href="/user/charts/monthly-income">
                                 <a onClick={closeSideNav}> Monthly Income </a>
                             </Link>
-                            <Link href="">
+                            <Link href="/user/charts/balance-trend">
                                 <a onClick={closeSideNav}> Trend </a>
                             </Link>
                             <Link href="">

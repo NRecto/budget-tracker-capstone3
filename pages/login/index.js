@@ -78,6 +78,7 @@ export default function index() {
                         title: "Authentication Failed",
                         text: "User does not exist!"
                     })
+                    Router.push('/register')
                 } else if ( data.error === 'incorrect-password') {
                     Swal.fire({
                         icon: "error",

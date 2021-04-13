@@ -30,7 +30,7 @@ export default function newCategory () {
             .then( res => res.json() )
             .then( data => {
                 console.log(data.err)
-                if(data.err === 'error') {
+                if(data.err === 'name-already-exist') {
                     Swal.fire(
                         'Error!',
                         'Catergory Name already exist.',
