@@ -189,3 +189,4 @@ export async function getStaticProps() {
       props: { data }, // will be passed to the page component as props
     }
   }
+

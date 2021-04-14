@@ -1,8 +1,10 @@
+import "react-datepicker/dist/react-datepicker.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css';
 import React, { useState, useEffect } from 'react';
 import SideNavBar from '../components/SideNavbar';
 import { UserProvider } from '../UserContext';
+
 
 
 function MyApp({ Component, pageProps }) {

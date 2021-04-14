@@ -2,6 +2,7 @@ import React, {useState, useEffect, Fragment } from 'react';
 import { Bar } from 'react-chartjs-2';
 import moment from 'moment';
 
+
 export default function BarChart({rawData}) {
     
     const [ months, setMonths ] = useState([
