@@ -1,0 +1,60 @@
+.sideNav {
+    height: 100%;
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    left: 0; 
+    background-color:#232323; 
+    transition: .5s ease; 
+    overflow-x: hidden; 
+    padding-top: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    color: #ffffff;
+    text-align: center;
+  }
+  .faBars{
+    color: #000;
+    margin: 10% ;
+  }
+  .topNav {
+    margin: 2%;
+    position: fixed; 
+    z-index: 1; 
+    transition: 0.3s ease;
+  }
+  .topNav:hover {
+    padding: 1% 2%;
+    position: fixed; 
+    z-index: 1; 
+    transform: scale(1.1,1.1);
+  }
+  .openSide {
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid #000;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: 0.3s ease;
+  }
+  .openSide:hover {
+    background-color: #ffffff;
+    border: 1px solid #1e2a32;
+    color: #1e2a32;
+  }
+  .closeSide {
+    background-color: transparent;
+    border: none;
+    text-align: end;
+    margin-right: 10%;
+    font-size: 2rem;
+    transition: 0.5s ease;
+  }
+  .closeSide:hover{
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    transform: scale(1.1,1.1);
+  }

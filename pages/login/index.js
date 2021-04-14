@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Router from 'next/router'
+import Router from 'next/router';
 import { Form, Button, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import styles from '../../styles/Login.module.css';
 
 
 // import users from '../data/users';
-import UserContext from '../../UserContext'
+import UserContext from '../../UserContext';
 import {GoogleLogin} from 'react-google-login';
 
 
@@ -17,6 +18,7 @@ export default function index() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isActive, setIsActive] = useState(true);
+    const [imgUrl, setImgUrl] =useState('');
 
     function authenticate(e) {
         e.preventDefault();
@@ -99,6 +101,7 @@ export default function index() {
     }
 
     function authenticateGoogleToken(response){
+        setImgUrl(localStorage.setItem('imgUrl', response.profileObj.imageUrl))
         fetch('http://localhost:4000/api/users/verify-google-id-token', {
             method: 'POST',
             headers: {
@@ -165,36 +168,38 @@ export default function index() {
 
     
     return (
-        <Container>
-            <Form onSubmit={(e) => authenticate(e)}>
-                <Form.Group controlId="userEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control 
-                        type="email" 
-                        placeholder="Enter email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </Form.Group>
+        <div className={styles.bodyLogin}>
+            <Container >
+                <div className={styles.container}>
+                <Form onSubmit={(e) => authenticate(e)}>
+                    <Form.Group controlId="userEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control 
+                            type="email" 
+                            placeholder="Enter email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
 
-                <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                        type="password" 
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </Form.Group>
+                    <Form.Group controlId="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control 
+                            type="password" 
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
 
-                {isActive ? 
-                    <Button variant="primary" type="submit" id="submitBtn" className="btn-block">
-                        Submit
-                    </Button>
-                    : 
-                    <Button variant="danger" type="submit" id="submitBtn" disabled className="btn-block">
+                    {isActive ? 
+                        <Button variant="primary" type="submit" id="submitBtn" className="btn-block">
+                            Submit
+                        </Button>
+                        : 
+                        <Button variant="danger" type="submit" id="submitBtn" disabled className="btn-block">
                         Submit
                     </Button>
                 }
@@ -208,6 +213,8 @@ export default function index() {
                     className="w-100 text-center my-4 d-flex justify-content-center"
                 />
             </Form>
+            </div>
         </Container>
+        </div>
     )
 }

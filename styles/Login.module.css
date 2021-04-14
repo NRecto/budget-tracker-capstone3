@@ -1,0 +1,16 @@
+.bodyLogin {
+    background-image: url('../images/home-bg.jpg');
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100vh;
+    display: flex;
+    
+}
+.container Form{
+    margin-top: 20vh;
+    padding: 3% 5%;
+    border: 3px solid #FFF;
+    border-radius: 15px;
+}

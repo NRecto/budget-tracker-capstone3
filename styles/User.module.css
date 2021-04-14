@@ -1,0 +1,48 @@
+.bodyContainer {
+    background-color: #1e2a32;
+}
+
+.profileBodyCont{
+    padding: 5% 8%;
+}
+.profileBody{
+    display: flex;
+    justify-content:space-between;
+    text-align: center;
+}
+
+.profile, .transaction, .addTransaction, .record {
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    padding: 3% 5%;
+    box-shadow: 5px 5px 10px;
+
+}
+.addTransaction {
+    margin-top: 50px;
+}
+.addTransaction Form{
+    padding: 3%;
+    text-align: left;
+}
+.record {
+    margin: 20px 0;
+}
+.amountRed{
+    color:  red;
+}
+.amountGreen {
+    color: green;
+}
+.profileUserBalance{
+    color: blue;
+}
+.profilePicture {
+    height: 20vh;
+    border-radius: 50%;
+    border: 3px solid #1e2a32;
+}
+.successParag {
+    color: rgb(1, 162, 255);
+}

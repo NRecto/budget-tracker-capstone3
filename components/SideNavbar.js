@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/SideNavBar.module.css';
 import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons'

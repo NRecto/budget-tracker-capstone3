@@ -1,21 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
-import styles from '../../styles/Home.module.css';
+import styles from '../../styles/User.module.css';
 import Swal from 'sweetalert2';
-import Router from 'next/router';
-// import UserContext from '../../UserContext';
+import moment from 'moment';
+import Image from 'next/image';
 
 export default function index({user, userTransaction, userCategory}) {
 	const {firstName, lastName, savings} = user;
 
 	const displayTransactHistory = userTransaction.map( data => {
+		let nameCapitalized = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+		let date = moment(data.createdOn).calendar();
 		return (
 				<div key={data._id} className={styles.record}>
-					<p>Name: {data.name}</p>
-					<p>Type: {data.type}</p>
-					<p>Amount: {data.amount}</p>
-					<p>Description: {data.description}</p>
-					<p>Date: {data.createdOn}</p>
+				<Container>
+					<Row className={styles.recordBody}>
+						<Col>
+							<Col>
+								<h5>{data.description}</h5>
+								<p className={styles.successParag}>	Transaction Success! </p>
+								<p> {date}</p>
+							</Col>
+						</Col>
+						<Col>
+							{
+								data.type === "Income"
+								?	<>
+										<p className={styles.amountGreen}>+ &#8369; {data.amount}</p>
+										<p className={styles.amountGreen}>{nameCapitalized}</p>
+									</>
+								:	<>
+										<p className={styles.amountRed}>- &#8369; {data.amount}</p>
+										<p className={styles.amountRed}>{nameCapitalized}</p>
+									</>
+							}
+						</Col>
+					</Row>
+						
+				</Container>
 				</div>
 		)
 	})
@@ -44,11 +66,14 @@ export default function index({user, userTransaction, userCategory}) {
     const [name, setName] = useState(true);
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
+	const [imgUrl, setImgUrl] = useState('')
 
     useEffect( ()=> {
         setToken(localStorage['token'])
+        setImgUrl(localStorage['imgUrl'])
     }, [name, type, amount, description, user])
 
+	console.log(imgUrl)
 
     function addNewTransaction(e) {
         e.preventDefault();
@@ -100,16 +125,21 @@ export default function index({user, userTransaction, userCategory}) {
 	<div className={styles.bodyContainer}>
 	<Container fluid className={styles.profileBodyCont}>
         <Row className={styles.profileBody}>
-          <Col >
+          <Col md={5}>
             <div className={styles.profile}>
-              <h1>Profile</h1>
+              <h2>Profile</h2>
+			  <img
+				src={imgUrl}
+				alt='Profile Picture'
+				className={styles.profilePicture}
+			  />
               <p className={styles.profileUserProfile}></p>
-              <p className={styles.profileUserName}>{firstName} {lastName}</p>
-              <p className={styles.profileUserBalance}>{savings}</p>
+              <p className={styles.profileUserName}>{lastName}, {firstName}</p>
+              <p>Current Savings: <span className={styles.profileUserBalance}>&#8369; {savings}</span></p>
             </div>
 
 			<div className={styles.addTransaction} >
-				<h1>Add New Transaction</h1>
+				<h2>New Transaction</h2>
 					<Form onSubmit={ (e)=> addNewTransaction(e)}>
 					<Form.Group>
 						<Form.Label>Category Type:</Form.Label>
@@ -189,9 +219,9 @@ export default function index({user, userTransaction, userCategory}) {
 				</Form>
 			</div>
           </Col>
-          <Col >
+          <Col md={7}>
 		  	<div className={styles.transaction} >
-				<h1>History</h1>
+				<h2>Transaction History</h2>
 			</div>
 				{displayTransactHistory}
           </Col>
