@@ -10,7 +10,7 @@ export default function index({user, userTransaction, userCategory}) {
 
 	const displayTransactHistory = userTransaction.map( data => {
 		return (
-				<div key={data._id}>
+				<div key={data._id} className={styles.record}>
 					<p>Name: {data.name}</p>
 					<p>Type: {data.type}</p>
 					<p>Amount: {data.amount}</p>
@@ -45,10 +45,9 @@ export default function index({user, userTransaction, userCategory}) {
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
 
-
     useEffect( ()=> {
         setToken(localStorage['token'])
-    }, [name, type, amount, description])
+    }, [name, type, amount, description, user])
 
 
     function addNewTransaction(e) {
@@ -98,11 +97,10 @@ export default function index({user, userTransaction, userCategory}) {
   return (
 
     <React.Fragment>
-      <div className={styles.body} >
-        <Container className={styles.profileBodyCont}>
-
+	<div className={styles.bodyContainer}>
+	<Container fluid className={styles.profileBodyCont}>
         <Row className={styles.profileBody}>
-          <Col  md={5}>
+          <Col >
             <div className={styles.profile}>
               <h1>Profile</h1>
               <p className={styles.profileUserProfile}></p>
@@ -117,7 +115,6 @@ export default function index({user, userTransaction, userCategory}) {
 						<Form.Label>Category Type:</Form.Label>
 						<Form.Control 
 						as="select" 
-						className="w-75"
 						value={type}
 						onChange={ (e) => setType(e.target.value)}
 						required
@@ -133,7 +130,6 @@ export default function index({user, userTransaction, userCategory}) {
 								<Form.Label>Category Name:</Form.Label>
 								<Form.Control 
 								as="select" 
-								className="w-75"
 								value={type}
 								onChange={ (e) => setType(e.target.value)}
 								required
@@ -147,7 +143,6 @@ export default function index({user, userTransaction, userCategory}) {
 							<Form.Label>Category Name:</Form.Label>
 							<Form.Control 
 							as="select" 
-							className="w-75"
 							value={name}
 							onChange={ (e) => setName(e.target.value)}
 							required
@@ -160,7 +155,6 @@ export default function index({user, userTransaction, userCategory}) {
 							<Form.Label>Category Name:</Form.Label>
 							<Form.Control 
 							as="select" 
-							className="w-75"
 							value={name}
 							onChange={ (e) => setName(e.target.value)}
 							required
@@ -195,7 +189,7 @@ export default function index({user, userTransaction, userCategory}) {
 				</Form>
 			</div>
           </Col>
-          <Col  md={6}>
+          <Col >
 		  	<div className={styles.transaction} >
 				<h1>History</h1>
 			</div>
@@ -203,7 +197,7 @@ export default function index({user, userTransaction, userCategory}) {
           </Col>
         </Row>
       </Container>
-      </div>
+	  </div>
     </React.Fragment>
   )
 }

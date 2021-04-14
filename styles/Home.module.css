@@ -59,12 +59,13 @@
   transform: scale(1.1,1.1);
 }
 
-.body {
+.body_all {
   background-image: url('../images/home-bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
+  height: 100vh;
   }
 .landing_header {
   display: flex;
@@ -91,9 +92,15 @@
 }
 
 /*Profile  */
+
+.bodyContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 .profileBodyCont{
-display: block;
-justify-content: center;
+  padding: 5% 8%;
 }
 .profileBody{
   display: flex;
