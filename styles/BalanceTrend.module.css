@@ -1,0 +1,18 @@
+.balanceTrend{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e2a32;
+}
+.body{
+    margin-top: 10vh;
+    text-align: center;
+}
+.calendar {
+    display: flex;
+    justify-content: space-evenly;
+}
+.startDate , .endDate{
+    border: 3px solid #b3ffff;
+    border-radius: 5px;
+}

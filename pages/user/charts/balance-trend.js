@@ -1,6 +1,8 @@
 import React, {useContext} from "react";
 import LineChart from '../../../components/LineCharts';
 import UserContext from '../../../UserContext';
+import {Container} from 'react-bootstrap';
+import styles from '../../../styles/BalanceTrend.module.css';
 
 
 export default function balanceTrend({data}) {
@@ -10,7 +12,7 @@ export default function balanceTrend({data}) {
     const newData = data.filter( data => data.user === user.id)
     return (
         <React.Fragment>
-            <LineChart rawData={newData} />
+                <LineChart rawData={newData} />
         </React.Fragment>
     )
 }

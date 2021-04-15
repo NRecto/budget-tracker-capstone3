@@ -1,6 +1,7 @@
 import React, {useState, useEffect, Fragment } from 'react';
 import { Bar } from 'react-chartjs-2';
 import moment from 'moment';
+import styles from '../styles/BarChart.module.css'
 
 
 export default function BarChart({rawData}) {
@@ -20,9 +21,11 @@ export default function BarChart({rawData}) {
         'December'
     ])
     const [expensePerMonth,setExpensePerMonth] = useState([]);
+    const [labels, stLabels] = useState('');
 
     useEffect( () => {
-
+        
+        
         setExpensePerMonth(months.map( month => {
             let sales = 0;
             rawData.forEach( element => {
@@ -39,7 +42,7 @@ export default function BarChart({rawData}) {
     const data ={        
                     labels: months,
                     datasets:[{
-                        label: 'Monthly Expense',
+                        label: 'data',
                         backgroundColor: "blue" ,
                         borderColor: 'white',
                         borderWidth: 1,
@@ -61,8 +64,8 @@ export default function BarChart({rawData}) {
     }
             
     return (
-        <React.Fragment>
-            <Bar data={data} options={options} />  
+        <React.Fragment>   
+                <Bar data={data} options={options} />  
         </React.Fragment>
     )
 }

@@ -2,7 +2,8 @@ import React, {useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import DatePicker from "react-datepicker";
 import moment from 'moment';
-
+import styles from '../styles/BalanceTrend.module.css';
+import {Container} from 'react-bootstrap';
 
 
 export default function BarChart({rawData}) {
@@ -55,8 +56,8 @@ export default function BarChart({rawData}) {
                     datasets:[
                         {
                             label: 'Current Balance',
-                            backgroundColor: "#ffcccc" ,
-                            borderColor: 'red',
+                            backgroundColor: "#ccf5ff" ,
+                            borderColor: '#00ccff',
                             data: balance
                         }
                 ]
@@ -79,9 +80,22 @@ export default function BarChart({rawData}) {
 
     return (
         <React.Fragment>
-            <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-            <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
-            <Line data={data} config={config} />  
+            <div className={styles.balanceTrend}>
+                <Container>
+                    <div className={styles.body}>
+                        <div className={styles.calendar}>
+                        <div className={styles.startDate}>
+                            <DatePicker selected={startDate} onChange={date => setStartDate(date)}  />
+                        </div>
+                        <div className={styles.endDate}>
+                            <DatePicker selected={endDate} onChange={date => setEndDate(date)}  />
+                        </div>
+                        </div>
+                        <Line data={data} config={config} />  
+                    </div>
+                </Container>
+            </div>
         </React.Fragment>
     )
 }
+        

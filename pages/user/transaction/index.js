@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import { Container, Table, Form } from 'react-bootstrap';
 import Link from 'next/link';
 import UserContext from '../../../UserContext';
+import moment from 'moment';
 
 export default function index({data}) {
 
@@ -46,56 +47,59 @@ export default function index({data}) {
         )
     })
     const searchedFilterIncome = incomeType.filter( data => {
-        return data.name.toLowerCase().includes(search)
+        return data.description.toLowerCase().includes(search)
     }).map( data => {
         let nameCapitalized = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+        let date = moment(data.createdOn).calendar();
         return (
             <tr key={data._id}>
+                <td>{date}</td>
+                <td>{data.description}</td>
                 <td>{nameCapitalized}</td>
                 <td>{data.type}</td>
                 <td>{data.amount}</td>
-                <td>{data.description}</td>
             </tr>
         )
     })
     const searchedFilterExpense = expenseType.filter( data => {
-        return data.name.toLowerCase().includes(search)
+        return data.description.toLowerCase().includes(search)
     }).map( data => {
         let nameCapitalized = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+        let date = moment(data.createdOn).calendar();
         return (
             <tr key={data._id}>
+                <td>{date}</td>
+                <td>{data.description}</td>
                 <td>{nameCapitalized}</td>
                 <td>{data.type}</td>
                 <td>{data.amount}</td>
-                <td>{data.description}</td>
             </tr>
         )
     })
 
     const showSearched = newData.filter( data => {
-        return data.name.toLowerCase().includes(search)
+        return data.description.toLowerCase().includes(search)
     }).map( data => {
         let nameCapitalized = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+        let date = moment(data.createdOn).calendar();
         return (
             <tr key={data._id}>
+                <td>{date}</td>
+                <td>{data.description}</td>
                 <td>{nameCapitalized}</td>
                 <td>{data.type}</td>
                 <td>{data.amount}</td>
-                <td>{data.description}</td>
             </tr>
         )
     })
     
-
-    // console.log(search.length)
-    // console.log(showSearched)
 
     
     
     useEffect( () => {
 
     }, [type, search])
-    
+ console.log(dataRow)
     return (
         <React.Fragment>
         <Container>
@@ -131,10 +135,11 @@ export default function index({data}) {
                     ?   <Table striped bordered hover>
                             <thead>
                                 <tr>
+                                <th>Date</th>
+                                <th>Description</th>
                                 <th>Category Name</th>
                                 <th>Category Type</th>
                                 <th>Amount</th>
-                                <th>Description</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,10 +149,11 @@ export default function index({data}) {
                     :   <Table striped bordered hover>
                             <thead>
                                 <tr>
+                                <th>Date</th>
+                                <th>Description</th>
                                 <th>Category Name</th>
                                 <th>Category Type</th>
                                 <th>Amount</th>
-                                <th>Description</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -160,10 +166,11 @@ export default function index({data}) {
                         ?   <Table striped bordered hover>
                                 <thead>
                                     <tr>
-                                    <th>Category Name</th>
-                                    <th>Category Type</th>
-                                    <th>Amount</th>
-                                    <th>Description</th>
+                                    <th>Date</th>
+                                <th>Description</th>
+                                <th>Category Name</th>
+                                <th>Category Type</th>
+                                <th>Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -173,10 +180,11 @@ export default function index({data}) {
                         :   <Table striped bordered hover>
                                 <thead>
                                     <tr>
-                                    <th>Category Name</th>
-                                    <th>Category Type</th>
-                                    <th>Amount</th>
-                                    <th>Description</th>
+                                    <th>Date</th>
+                                <th>Description</th>
+                                <th>Category Name</th>
+                                <th>Category Type</th>
+                                <th>Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -187,10 +195,11 @@ export default function index({data}) {
                             ?   <Table striped bordered hover>
                                     <thead>
                                         <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
                                         <th>Category Name</th>
                                         <th>Category Type</th>
                                         <th>Amount</th>
-                                        <th>Description</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -200,10 +209,11 @@ export default function index({data}) {
                             :   <Table striped bordered hover>
                                     <thead>
                                         <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
                                         <th>Category Name</th>
                                         <th>Category Type</th>
                                         <th>Amount</th>
-                                        <th>Description</th>
                                         </tr>
                                     </thead>
                                     <tbody>
