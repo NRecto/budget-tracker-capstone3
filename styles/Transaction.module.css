@@ -1,0 +1,22 @@
+.mainBody{
+    padding-top: 5vh;
+}
+.head{
+    text-align: center;
+}
+.filterForm{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.table{
+    margin-top: 15px;
+    background-color: #fff;
+    box-shadow: 5px 5px 10px;
+}
+.btn{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}

@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { Container, Table, Form } from 'react-bootstrap';
+import { Container, Table, Form, Row, Col } from 'react-bootstrap';
 import Link from 'next/link';
 import UserContext from '../../../UserContext';
 import moment from 'moment';
+import styles from '../../../styles/Transaction.module.css';
 
 export default function index({data}) {
 
@@ -99,117 +100,122 @@ export default function index({data}) {
     useEffect( () => {
 
     }, [type, search])
- console.log(dataRow)
+
     return (
         <React.Fragment>
-        <Container>
-            <h1>Transaction History</h1>
-            <Link href="/user/transaction/new" >
-                <a className="btn btn-primary">Add Transaction</a>
-            </Link>
-            <Form>
-            <Form.Group >
-                <Form.Control 
-                type="text" 
-                placeholder="Search Transaction"
-                value={search}
-                onChange={ (e) => setSearch(e.target.value)} />
-            </Form.Group>
-                <Form.Group>
-                    <Form.Label>Filter By Type:</Form.Label>
-                    <Form.Control 
-                    as="select" 
-                    className="w-75"
-                    value={type}
-                    onChange={ (e) => setType(e.target.value)}
-                    >
-                        <option>Select All</option>
-                        <option>Income</option>
-                        <option>Expense</option>
-                    </Form.Control>
-                </Form.Group>
-            </Form>
-            {
-                type === "Select All"
-                ?   search === 0
-                    ?   <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                <th>Date</th>
-                                <th>Description</th>
-                                <th>Category Name</th>
-                                <th>Category Type</th>
-                                <th>Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {dataRow}
-                            </tbody>
-                        </Table>
-                    :   <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                <th>Date</th>
-                                <th>Description</th>
-                                <th>Category Name</th>
-                                <th>Category Type</th>
-                                <th>Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {showSearched}
-                            </tbody>
-                        </Table>
-                
-                :   type === 'Income'
+        <div className={styles.mainBody}>
+            <Container>
+            <div className={styles.head}>
+                <h1>Transaction History</h1>
+                <div className={styles.btn}>
+                    <Link href="/user/transaction/new" >
+                        <a className="btn btn-outline-primary" >Add Transaction</a>
+                    </Link>
+                </div>
+                <div className={styles.filterForm}>
+                        <Form.Group >
+                            <Form.Control 
+                            type="text" 
+                            placeholder="Search Transaction"
+                            value={search}
+                            onChange={ (e) => setSearch(e.target.value)} />
+                        </Form.Group>
+
+                            <Form.Group>
+                                <Form.Control 
+                                as="select" 
+                                value={type}
+                                onChange={ (e) => setType(e.target.value)}
+                                >
+                                    <option value='Select All'>Filter by:</option>
+                                    <option>Income</option>
+                                    <option>Expense</option>
+                                </Form.Control>
+                            </Form.Group>
+                </div>
+            </div>
+            <div className={styles.table}>
+                {
+                    type === "Select All"
                     ?   search === 0
                         ?   <Table striped bordered hover>
                                 <thead>
                                     <tr>
                                     <th>Date</th>
-                                <th>Description</th>
-                                <th>Category Name</th>
-                                <th>Category Type</th>
-                                <th>Amount</th>
+                                    <th>Description</th>
+                                    <th>Category Name</th>
+                                    <th>Category Type</th>
+                                    <th>Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {filterIncome}
+                                {dataRow}
                                 </tbody>
                             </Table>
                         :   <Table striped bordered hover>
                                 <thead>
                                     <tr>
                                     <th>Date</th>
-                                <th>Description</th>
-                                <th>Category Name</th>
-                                <th>Category Type</th>
-                                <th>Amount</th>
+                                    <th>Description</th>
+                                    <th>Category Name</th>
+                                    <th>Category Type</th>
+                                    <th>Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {searchedFilterIncome}
+                                {showSearched}
                                 </tbody>
                             </Table>
-                    :   search === 0
+                    
+                    :   type === 'Income'
+                        ?   search === 0
                             ?   <Table striped bordered hover>
                                     <thead>
                                         <tr>
                                         <th>Date</th>
-                                        <th>Description</th>
-                                        <th>Category Name</th>
-                                        <th>Category Type</th>
-                                        <th>Amount</th>
+                                    <th>Description</th>
+                                    <th>Category Name</th>
+                                    <th>Category Type</th>
+                                    <th>Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {filterExpense}
+                                    {filterIncome}
                                     </tbody>
                                 </Table>
                             :   <Table striped bordered hover>
                                     <thead>
                                         <tr>
                                         <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category Name</th>
+                                    <th>Category Type</th>
+                                    <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {searchedFilterIncome}
+                                    </tbody>
+                                </Table>
+                        :   search === 0
+                                ?   <Table striped bordered hover>
+                                        <thead>
+                                            <tr>
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                            <th>Category Name</th>
+                                            <th>Category Type</th>
+                                            <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {filterExpense}
+                                        </tbody>
+                                    </Table>
+                                :   <Table striped bordered hover>
+                                        <thead>
+                                            <tr>
+                                            <th>Date</th>
                                         <th>Description</th>
                                         <th>Category Name</th>
                                         <th>Category Type</th>
@@ -222,7 +228,9 @@ export default function index({data}) {
                                 </Table>
                         
             }
+            </div>
         </Container>
+        </div>
         </React.Fragment>
     )
 }

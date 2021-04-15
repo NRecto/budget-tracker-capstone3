@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import Router  from 'next/router';
+import styles from '../../styles/Categories.module.css';
 
 export default function newCategory () {
     const [name, setName] = useState('');
@@ -53,34 +54,38 @@ export default function newCategory () {
     
     return (
         <React.Fragment>
-        <Container>
-            <Form onSubmit={ (e)=> addNewCategory(e)}>
-                <Form.Group>
-                    <Form.Label>Category Name:</Form.Label>
+        <div className={styles.mainForm}>
+            <Container className={styles.formContainer}>
+            <div className={styles.bodyForm}>
+            <h1>New Category</h1>
+                <Form onSubmit={ (e)=> addNewCategory(e)}>
+                    <Form.Group>
+                        <Form.Label>Category Name:</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                placeholder="Enter Category Name"
+                                value={name}
+                                onChange={ (e) => setName(e.target.value)}
+                                required
+                            />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Category Type:</Form.Label>
                         <Form.Control 
-                            type="text" 
-                            placeholder="Enter Category Name"
-                            value={name}
-                            onChange={ (e) => setName(e.target.value)}
-                            required
-                        />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Category Type:</Form.Label>
-                    <Form.Control 
-                    as="select" 
-                    className="w-50"
-                    value={type}
-                    onChange={ (e) => setType(e.target.value)}
-                    >
-                        <option value='true' disabled>Select</option>
-                        <option>Income</option>
-                        <option>Expense</option>
-                    </Form.Control>
-                </Form.Group>
-                <Button type="submit" variant='primary'>Add</Button>
-            </Form>
-        </Container>
+                        as="select" 
+                        value={type}
+                        onChange={ (e) => setType(e.target.value)}
+                        >
+                            <option value='true' disabled>Select</option>
+                            <option>Income</option>
+                            <option>Expense</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Button type="submit" variant='primary'>Add</Button>
+                </Form>
+            </div>
+            </Container>
+        </div>
         </React.Fragment>
     )
 }

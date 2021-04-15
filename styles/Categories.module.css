@@ -1,0 +1,28 @@
+
+.body{
+    padding-top: 10vh;
+}
+.head h1{
+    text-align: center;
+    text-shadow: 2px 2px 5px;
+}
+.table{
+    margin-top: 15px;
+    background-color: #fff;
+    box-shadow: 5px 5px 10px;
+}
+.formContainer{
+    display: flex;
+    justify-content: center;
+}
+.bodyForm{
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 5% 7%;
+    box-shadow: 5px 0px 10px;
+    border-radius: 25px ;
+}
+

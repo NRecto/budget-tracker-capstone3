@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Form, Button, Container, Table } from 'react-bootstrap';
 import Link from 'next/link';
-import UserContext from '../../UserContext'
+import UserContext from '../../UserContext';
+import styles from '../../styles/Categories.module.css';
 
 export default function index({data}){
 
@@ -25,24 +26,31 @@ export default function index({data}){
   
     return (
         <React.Fragment>
-        <Container>
-            <h1>Categories</h1>
-            <Link href="/categories/new" >
-                <a className="btn btn-primary">Add Category</a>
-            </Link>
-            {/* <Button onClick={awit}>click</Button> */}
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                    <th>Category Name</th>
-                    <th>Category Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   {dataRow}
-                </tbody>
-        </Table>
-        </Container>
+          <div className={styles.mainBody}>
+            <Container>
+            <div className={styles.body}>
+              <div className={styles.head}>
+                <h1>Categories</h1>
+                <Link href="/categories/new" >
+                    <a className="btn btn-primary">Add Category</a>
+                </Link>
+              </div>
+              <div className={styles.table} >
+                <Table striped bordered hover>
+                      <thead>
+                          <tr>
+                          <th>Category Name</th>
+                          <th>Category Type</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {dataRow}
+                      </tbody>
+                </Table>
+              </div>
+            </div>
+            </Container>
+          </div>
         </React.Fragment>
     )
 }

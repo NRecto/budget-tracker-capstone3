@@ -3,16 +3,28 @@ import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import styles from '../../styles/User.module.css';
 import Swal from 'sweetalert2';
 import moment from 'moment';
-import Image from 'next/image';
+import Router from 'next/router';
+
 
 export default function index({user, userTransaction, userCategory}) {
 	const {firstName, lastName, savings} = user;
 
 	const displayTransactHistory = userTransaction.map( data => {
+		return ({
+			id: data._id,
+			name: data.name,
+			type: data.type,
+			amount: data.amount,
+			description: data.description,
+			date: moment(data.createdOn).format("YYYY-MM-DD h:mm:ss a"),
+			isoDate: data.createdOn
+		})
+	}).sort( (a,b) => a.date < b.date ? 1 : -1).map( data => {
 		let nameCapitalized = data.name.charAt(0).toUpperCase() + data.name.slice(1);
-		let date = moment(data.createdOn).calendar();
+		
+		let date = moment(data.isoDate).calendar();
 		return (
-				<div key={data._id} className={styles.record}>
+				<div key={data.id} className={styles.record}>
 				<Container>
 					<Row className={styles.recordBody}>
 						<Col>
@@ -42,6 +54,8 @@ export default function index({user, userTransaction, userCategory}) {
 		)
 	})
 
+	
+
 	const newData = userCategory.filter( categ => categ.user === user._id)
     const incomeType = newData.filter( data => data.type === 'Income')
     const expenseType = newData.filter( data => data.type === 'Expense')
@@ -66,14 +80,13 @@ export default function index({user, userTransaction, userCategory}) {
     const [name, setName] = useState(true);
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
-	const [imgUrl, setImgUrl] = useState('')
+	const [imgUrl, setImgUrl] = useState('');
+	const [reset, setReset] = useState('');
 
     useEffect( ()=> {
         setToken(localStorage['token'])
         setImgUrl(localStorage['imgUrl'])
-    }, [name, type, amount, description, user])
-
-	console.log(imgUrl)
+    }, [name, type, amount, description, reset])
 
     function addNewTransaction(e) {
         e.preventDefault();
@@ -107,6 +120,7 @@ export default function index({user, userTransaction, userCategory}) {
                         'success'
                     )
                 }
+				setReset('new')
             })
             
         } else {
@@ -116,8 +130,13 @@ export default function index({user, userTransaction, userCategory}) {
                 icon: 'error'
             })
         }
-        
+        setReset('')
     }
+	
+	async function addCategory(e){
+		Router.push('/categories/new')
+		
+	}
 	
   return (
 
@@ -158,51 +177,62 @@ export default function index({user, userTransaction, userCategory}) {
 						type === true 
 						?   <Form.Group>
 								<Form.Label>Category Name:</Form.Label>
-								<Form.Control 
-								as="select" 
-								value={type}
-								onChange={ (e) => setType(e.target.value)}
-								required
-								>
-									<option value='true' disabled>Select</option>
-								</Form.Control>
+								<div className='d-flex' >
+									<Form.Control 
+									as="select" 
+									value={type}
+									onChange={ (e) => setType(e.target.value)}
+									required
+									>
+										<option value='true' disabled>Select</option>
+									</Form.Control>
+									<Button onClick={addCategory}>ADD</Button>
+								</div>
+								
 						</Form.Group>
 						:
 						type === "Income"
 						? <Form.Group>
 							<Form.Label>Category Name:</Form.Label>
-							<Form.Control 
-							as="select" 
-							value={name}
-							onChange={ (e) => setName(e.target.value)}
-							required
-							>
-								<option value='true' disabled>Select</option>
-								{optionIncome}
-							</Form.Control>
+							<div className='d-flex' >
+								<Form.Control 
+								as="select" 
+								value={name}
+								onChange={ (e) => setName(e.target.value)}
+								required
+								>
+									<option value='true' disabled>Select</option>
+									{optionIncome}
+								</Form.Control>
+								<Button onClick={addCategory}>ADD</Button>
+							</div>
 						</Form.Group>
 						: <Form.Group>
 							<Form.Label>Category Name:</Form.Label>
-							<Form.Control 
-							as="select" 
-							value={name}
-							onChange={ (e) => setName(e.target.value)}
-							required
-							>
-								<option value='true' disabled>Select</option>
-								{optionExpense}
-							</Form.Control>
+							<div className='d-flex'>
+								<Form.Control 
+								as="select" 
+								value={name}
+								onChange={ (e) => setName(e.target.value)}
+								required
+								>
+									<option value='true' disabled>Select</option>
+									{optionExpense}
+								</Form.Control>
+								<Button onClick={addCategory}>ADD</Button>
+							</div>
+							
 						</Form.Group>
 					}
 					<Form.Group>
-						<Form.Label>Amount:</Form.Label>
-							<Form.Control 
-								type="number" 
-								placeholder="Enter amount"
-								value={amount}
-								onChange={ (e) => setAmount(e.target.value)}
-								required
-							/>
+					<Form.Label>Amount:</Form.Label>
+						<Form.Control 
+							type="number" 
+							placeholder="Enter amount"
+							value={amount}
+							onChange={ (e) => setAmount(e.target.value)}
+							required
+						/>
 					</Form.Group>
 
 					<Form.Group>
