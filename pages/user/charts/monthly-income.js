@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Container } from 'react-bootstrap';
-import BarChart from '../../../components/BarChart';
+import BarChartIncome from '../../../components/BarChartIncome';
 import UserContext from '../../../UserContext';
 import styles from '../../../styles/BarChart.module.css';
 
@@ -14,12 +14,14 @@ export default function index({data}){
     
     return (
         <div className={styles.body}>
-            <Container>
-                <div className={styles.main}>
-                    <h1>Monthly Income</h1>
-                    <BarChart rawData={userExpense} />
+        <Container>
+            <div className={styles.main}>
+                <h1>Monthly Expense</h1>
+                <div className={styles.chart}>
+                    <BarChartIncome rawData={userExpense} />
                 </div>
-            </Container>
+            </div>
+        </Container>
         </div>
         
     )

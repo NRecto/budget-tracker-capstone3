@@ -12,7 +12,16 @@ export default function balanceTrend({data}) {
     const newData = data.filter( data => data.user === user.id)
     return (
         <React.Fragment>
-                <LineChart rawData={newData} />
+        <div className={styles.parentBody}>
+        <Container>
+            <div className={styles.mainBody}>
+                <h1>Balance Trend</h1>
+                <div className={styles.chart}>
+                    <LineChart rawData={newData} />
+                </div>
+            </div>
+        </Container>
+        </div>
         </React.Fragment>
     )
 }

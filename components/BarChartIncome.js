@@ -1,7 +1,6 @@
 import React, {useState, useEffect, Fragment } from 'react';
 import { Bar } from 'react-chartjs-2';
 import moment from 'moment';
-import styles from '../styles/BarChart.module.css'
 
 
 export default function BarChart({rawData}) {
@@ -41,8 +40,8 @@ export default function BarChart({rawData}) {
     const data ={        
                     labels: months,
                     datasets:[{
-                        label: 'Monthly Expense',
-                        backgroundColor: "red" ,
+                        label: 'Monthly Income',
+                        backgroundColor: "green" ,
                         borderColor: 'white',
                         borderWidth: 1,
                         hoverBackgroundColor: 'lightBlue',

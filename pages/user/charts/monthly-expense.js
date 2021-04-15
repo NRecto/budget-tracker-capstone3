@@ -17,7 +17,9 @@ export default function index({data}){
         <Container>
             <div className={styles.main}>
                 <h1>Monthly Expense</h1>
-                <BarChart rawData={userExpense} />
+                <div className={styles.chart}>
+                    <BarChart rawData={userExpense} />
+                </div>
             </div>
         </Container>
         </div>

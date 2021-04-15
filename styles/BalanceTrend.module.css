@@ -1,12 +1,15 @@
+.parentBody{
+    text-align: center;
+}
 .balanceTrend{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1e2a32;
 }
 .body{
     margin-top: 10vh;
     text-align: center;
+
 }
 .calendar {
     display: flex;
@@ -15,4 +18,12 @@
 .startDate , .endDate{
     border: 3px solid #b3ffff;
     border-radius: 5px;
+}
+.mainBody{
+    padding-top: 8vh;
+
+}
+.chart{
+    background-color: #fff;
+    box-shadow: 3px 5px 5px;
 }
