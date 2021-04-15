@@ -13,8 +13,8 @@ export default function Landing() {
 
         <Row>
           <Col className={styles.landing_header}>
-            <h1>BRAAAP ==</h1>
-            <p>BUDGET YOUR TRAVEL AHEAD OF TIME  |  HAVE A STRESS FREE VACATION  |  MAXIMIZE YOUR MONEY (TYPE EFFECT)</p>
+            <h1>BRAAAP</h1>
+            <p>BUDGET YOUR TRAVEL AHEAD OF TIME  |  HAVE A STRESS FREE VACATION  |  MAXIMIZE YOUR MONEY</p>
           </Col>
           <Col lg={12} className={styles.home_button}>
               <Link href="/login" >
