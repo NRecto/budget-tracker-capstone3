@@ -23,7 +23,7 @@ export default function breakdown(){
     })
 
     useEffect( ()=> {
-        fetch('http://localhost:4000/api/ledger')
+        fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
         .then( res => res.json() )
         .then( data => setData(data))
 

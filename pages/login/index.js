@@ -23,7 +23,7 @@ export default function index() {
     function authenticate(e) {
         e.preventDefault();
 
-        fetch('http://localhost:4000/api/users/login', {
+        fetch('https://protected-retreat-88721.herokuapp.com/api/users/login', {
             method: "POST",
             headers: {
                 'Content-Type' : 'application/json'
@@ -41,7 +41,7 @@ export default function index() {
                 setEmail('')
                 setPassword('')
 
-                fetch('http://localhost:4000/api/users/details', {
+                fetch('https://protected-retreat-88721.herokuapp.com/api/users/details', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${data.accessToken}` 
@@ -102,7 +102,7 @@ export default function index() {
 
     function authenticateGoogleToken(response){
         setImgUrl(localStorage.setItem('imgUrl', response.profileObj.imageUrl))
-        fetch('http://localhost:4000/api/users/verify-google-id-token', {
+        fetch('https://protected-retreat-88721.herokuapp.com/api/users/verify-google-id-token', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -138,7 +138,7 @@ export default function index() {
     }
 
     function retrieveUserDetails(accessToken) {
-        fetch('http://localhost:4000/api/users/details', {
+        fetch('https://protected-retreat-88721.herokuapp.com/api/users/details', {
             headers: {
                 'Authorization' : `Bearer ${accessToken}`
             }

@@ -18,7 +18,7 @@ export default function index() {
 
         e.preventDefault();
 
-        fetch("http://localhost:4000/api/users/email-exists", {
+        fetch("https://protected-retreat-88721.herokuapp.com/api/users/email-exists", {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -28,7 +28,7 @@ export default function index() {
         .then( res => res.json() )
         .then( data =>{ 
             if(data === false) {
-                fetch("http://localhost:4000/api/users/", {
+                fetch("https://protected-retreat-88721.herokuapp.com/api/users/", {
                     method: 'POST',
                     headers: {
                         'Content-Type' : 'application/json'

@@ -92,7 +92,7 @@ export default function index({user, userTransaction, userCategory}) {
         e.preventDefault();
         if( type !== true && name !== true) {
             
-            fetch('http://localhost:4000/api/ledger', {
+            fetch('https://protected-retreat-88721.herokuapp.com/api/ledger', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -264,7 +264,7 @@ export default function index({user, userTransaction, userCategory}) {
 
 export async function getStaticPaths(){
 	
-	const res = await fetch('http://localhost:4000/api/users/details-landing')
+	const res = await fetch('https://protected-retreat-88721.herokuapp.com/api/users/details-landing')
     const data = await res.json();
 	
 	const paths = data.map( user => {
@@ -281,18 +281,18 @@ export async function getStaticPaths(){
 
 export async function getStaticProps({params}){
 
-	const res = await fetch('http://localhost:4000/api/users/details-landing')
+	const res = await fetch('https://protected-retreat-88721.herokuapp.com/api/users/details-landing')
 
     const data = await res.json()
 	
 	const user = data.find( user => user._id === params.id)
 	// console.log(user)
 
-	const res1 = await fetch(`http://localhost:4000/api/ledger`)
+	const res1 = await fetch(`https://protected-retreat-88721.herokuapp.com/api/ledger`)
     const transactionData = await res1.json()
 	const userTransaction = transactionData.filter( user => user.user === params.id)
 
-	const res2 = await fetch(`http://localhost:4000/api/category`)
+	const res2 = await fetch(`https://protected-retreat-88721.herokuapp.com/api/category`)
     const categoryData = await res2.json();
 	const userCategory = categoryData.filter( user => user.user === params.id)
 	return {

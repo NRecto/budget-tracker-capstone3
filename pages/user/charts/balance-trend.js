@@ -27,7 +27,7 @@ export default function balanceTrend({data}) {
 }
 
 export async function getStaticProps(){
-    const res = await fetch('http://localhost:4000/api/ledger')
+    const res = await fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
     const data = await res.json();
 
     return{

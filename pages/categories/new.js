@@ -17,7 +17,7 @@ export default function newCategory () {
     function addNewCategory(e){
         e.preventDefault();
         if( type !== true ){
-            fetch('http://localhost:4000/api/category', {
+            fetch('https://protected-retreat-88721.herokuapp.com/api/category', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -55,7 +55,7 @@ export default function index({data}){
     )
 }
 export async function getStaticProps() {
-    const res = await fetch(`http://localhost:4000/api/category`)
+    const res = await fetch(`https://protected-retreat-88721.herokuapp.com/api/category`)
     const data = await res.json()
   
     if (!data) {

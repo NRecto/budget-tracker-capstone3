@@ -42,7 +42,7 @@ export default function newTransaction({data}){
         e.preventDefault();
         if( type !== true && name !== true) {
             
-            fetch('http://localhost:4000/api/ledger', {
+            fetch('https://protected-retreat-88721.herokuapp.com/api/ledger', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -176,7 +176,7 @@ export default function newTransaction({data}){
 }
 
 export async function getStaticProps() {
-    const res = await fetch(`http://localhost:4000/api/category`)
+    const res = await fetch(`https://protected-retreat-88721.herokuapp.com/api/category`)
     const data = await res.json()
   
     if (!data) {
