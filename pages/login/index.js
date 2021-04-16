@@ -100,8 +100,8 @@ export default function index() {
 
     }
 
-    function authenticateGoogleToken(response){
-        setImgUrl(localStorage.setItem('imgUrl', response.profileObj.imageUrl))
+    function authenticateGoogleToken(response){ 
+        
         fetch('https://protected-retreat-88721.herokuapp.com/api/users/verify-google-id-token', {
             method: 'POST',
             headers: {
@@ -135,6 +135,8 @@ export default function index() {
                 }
             }
         } )
+
+        setImgUrl(localStorage.setItem('imgUrl', response.profileObj.imageUrl))
     }
 
     function retrieveUserDetails(accessToken) {
