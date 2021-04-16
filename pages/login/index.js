@@ -155,7 +155,10 @@ export default function index() {
                 id: data._id,
                 isAdmin: data.isAdmin
             })
-            Router.push(`/user/${data._id}`)
+            Router.push({
+                pathname: 'user/[id]',
+                query: { id: data._id}
+            })
         })
     }
 
