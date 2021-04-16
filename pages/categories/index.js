@@ -6,7 +6,7 @@ import styles from '../../styles/Categories.module.css';
 
 export default function index({data}){
 
-    // console.log(data)
+    console.log(data)
     const {user} = useContext(UserContext);
     const newData = data.filter( categ => categ.user === user.id)
     const dataRow = newData.map( data => { 
