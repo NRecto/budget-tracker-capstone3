@@ -8,7 +8,7 @@ import Router from 'next/router';
 
 export default function index({user, userTransaction, userCategory}) {
 	const {firstName, lastName, savings} = user;
-
+	
 	const displayTransactHistory = userTransaction.map( data => {
 		return ({
 			id: data._id,

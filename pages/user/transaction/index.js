@@ -25,6 +25,7 @@ export default function index({data}) {
             </tr>
         )
     })
+    console.log(newData)
     const filterIncome = incomeType.map( data => {
         let nameCapitalized = data.name.charAt(0).toUpperCase() + data.name.slice(1);
         return (
