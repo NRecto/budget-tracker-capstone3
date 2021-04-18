@@ -15,7 +15,7 @@ export default function balanceTrend() {
         fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
         .then( res => res.json() )
         .then( data => setDefaultLocale(data) )
-    }, [data])
+    }, [])
     return (
         <React.Fragment>
         <div className={styles.parentBody}>

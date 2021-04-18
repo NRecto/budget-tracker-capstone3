@@ -14,7 +14,7 @@ export default function index(){
         fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
         .then( res => res.json() )
         .then( data => setData(data))
-    }, [data])
+    }, [])
     
     return (
         <div className={styles.body}>

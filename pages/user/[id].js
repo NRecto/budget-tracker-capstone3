@@ -116,7 +116,7 @@ export default function index() {
 		.then( res => res.json() )
 		.then( data => setUserCategory(data) );
 		
-    }, [name, type, amount, description, userTransaction])
+    }, [name, type, amount, description])
 
     function addNewTransaction(e) {
         e.preventDefault();
