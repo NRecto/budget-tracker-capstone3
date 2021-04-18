@@ -14,7 +14,7 @@ export default function balanceTrend() {
     useEffect( () =>{
         fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
         .then( res => res.json() )
-        .then( data => setDefaultLocale(data) )
+        .then( data => setData(data) )
     }, [])
     return (
         <React.Fragment>
