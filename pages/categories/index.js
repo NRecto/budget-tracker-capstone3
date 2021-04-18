@@ -4,11 +4,14 @@ import Link from 'next/link';
 import UserContext from '../../UserContext';
 import styles from '../../styles/Categories.module.css';
 
-export default function index({data}){
+export default function index(){
 
     console.log(data)
     const {user} = useContext(UserContext);
-    const newData = data.filter( categ => categ.user === user.id)
+
+    const [data, setData] = useState([]);
+    
+    const newData = data.filter( categ => categ.user === user.id);
     const dataRow = newData.map( data => { 
       let nameCapitalized = data.name.charAt(0).toUpperCase() + data.name.slice(1);
 
@@ -21,7 +24,9 @@ export default function index({data}){
     })
     
     useEffect( () =>{
-        
+      fetch(`https://protected-retreat-88721.herokuapp.com/api/category`)
+      .then( res => res.json() )
+      .then( data => setData(data) )
     }, [])
   
     return (
@@ -54,17 +59,4 @@ export default function index({data}){
         </React.Fragment>
     )
 }
-export async function getStaticProps() {
-    const res = await fetch(`https://protected-retreat-88721.herokuapp.com/api/category`)
-    const data = await res.json()
-  
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }
-  
-    return {
-      props: { data }, // will be passed to the page component as props
-    }
-  }
+
