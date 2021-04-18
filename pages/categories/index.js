@@ -6,7 +6,7 @@ import styles from '../../styles/Categories.module.css';
 
 export default function index(){
 
-    console.log(data)
+
     const {user} = useContext(UserContext);
 
     const [data, setData] = useState([]);

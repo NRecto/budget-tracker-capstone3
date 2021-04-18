@@ -286,7 +286,7 @@ export async function getStaticProps({params}){
     const data = await res.json()
 	
 	const user = data.find( user => user._id === params.id)
-	console.log(user)
+	// console.log(user)
 
 	const res1 = await fetch(`https://protected-retreat-88721.herokuapp.com/api/ledger`)
     const transactionData = await res1.json()
