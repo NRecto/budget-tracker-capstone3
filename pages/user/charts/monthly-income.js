@@ -1,16 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import BarChartIncome from '../../../components/BarChartIncome';
 import UserContext from '../../../UserContext';
 import styles from '../../../styles/BarChart.module.css';
 
-export default function index({data}){
+export default function index(){
 
     const { user } = useContext(UserContext);
-
+    const [data, setData] = useState([])
     const newData = data.filter( data => data.user === user.id)
     const userExpense = newData.filter( data => data.type === "Income" );
     
+    useEffect( () => {
+        fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
+        .then( res => res.json() )
+        .then( data => setData(data))
+    }, [data])
     
     return (
         <div className={styles.body}>
@@ -25,15 +30,4 @@ export default function index({data}){
         </div>
         
     )
-}
-
-export async function getStaticProps(){
-    const res = await fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
-    const data = await res.json();
-
-    return{
-        props: {
-            data
-        }
-    }
 }

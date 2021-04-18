@@ -27,7 +27,7 @@ export default function breakdown(){
         .then( res => res.json() )
         .then( data => setData(data))
 
-    }, [startDate, endDate])
+    }, [startDate, endDate, data])
     return (
         <React.Fragment>
         <h1 className='text-center'>Record Breakdown</h1>

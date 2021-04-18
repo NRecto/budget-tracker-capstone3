@@ -1,15 +1,21 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import LineChart from '../../../components/LineCharts';
 import UserContext from '../../../UserContext';
 import {Container} from 'react-bootstrap';
 import styles from '../../../styles/BalanceTrend.module.css';
+import { setDefaultLocale } from "react-datepicker";
 
 
-export default function balanceTrend({data}) {
+export default function balanceTrend() {
     
     const { user } = useContext(UserContext);
-
+    const [data, setData] = useState([])
     const newData = data.filter( data => data.user === user.id)
+    useEffect( () =>{
+        fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
+        .then( res => res.json() )
+        .then( data => setDefaultLocale(data) )
+    }, [data])
     return (
         <React.Fragment>
         <div className={styles.parentBody}>
@@ -26,13 +32,3 @@ export default function balanceTrend({data}) {
     )
 }
 
-export async function getStaticProps(){
-    const res = await fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
-    const data = await res.json();
-
-    return{
-        props: {
-            data
-        }
-    }
-}
