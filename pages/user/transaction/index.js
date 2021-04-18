@@ -5,11 +5,12 @@ import UserContext from '../../../UserContext';
 import moment from 'moment';
 import styles from '../../../styles/Transaction.module.css';
 
-export default function index({data}) {
+export default function index() {
 
     const {user} = useContext(UserContext);
     const [type, setType] =useState('Select All');
     const [search, setSearch] =useState('');
+    const [data, setData] = useState([]);
 
     const newData = data.filter( categ => categ.user === user.id)
     const incomeType = newData.filter( data => data.type === 'Income')
@@ -25,7 +26,7 @@ export default function index({data}) {
             </tr>
         )
     })
-    console.log(newData)
+
     const filterIncome = incomeType.map( data => {
         let nameCapitalized = data.name.charAt(0).toUpperCase() + data.name.slice(1);
         return (
@@ -99,7 +100,9 @@ export default function index({data}) {
     
     
     useEffect( () => {
-
+        fetch(`https://protected-retreat-88721.herokuapp.com/api/ledger`)
+        .then( res => res.json() )
+        .then( data => setData(data) )
     }, [type, search])
 
     return (
@@ -235,19 +238,3 @@ export default function index({data}) {
         </React.Fragment>
     )
 }
-
-export async function getStaticProps() {
-    const res = await fetch(`https://protected-retreat-88721.herokuapp.com/api/ledger`)
-    const data = await res.json()
-  
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }
-  
-    return {
-      props: { data }, // will be passed to the page component as props
-    }
-  }
-

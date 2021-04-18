@@ -1,15 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import styles from '../../styles/User.module.css';
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import Router from 'next/router';
+import UserContext from '../../UserContext';
 
 
-export default function index({user, userTransaction, userCategory}) {
-	const {firstName, lastName, savings} = user;
+export default function index() {
 	
-	const displayTransactHistory = userTransaction.map( data => {
+	const {user} = useContext(UserContext);
+	const [token, setToken] = useState('')
+    const [type, setType] = useState(true);
+    const [name, setName] = useState(true);
+    const [amount, setAmount] = useState('');
+    const [description, setDescription] = useState('');
+	const [imgUrl, setImgUrl] = useState('');
+	const [loggedUser, setLoggedUser] = useState([])
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [savings, setSavings] = useState('');
+	const [userCategory, setUserCategory] = useState([]);
+	const [userTransaction, setUserTransaction] = useState([]);
+
+	const filterLoggedUser = loggedUser.filter( data => data._id === user.id).map( data => {
+		return (
+			<div key={data._id}>
+				<p className={styles.profileUserProfile}></p>
+				<p className={styles.profileUserName}>{data.lastName}, {data.firstName}</p>
+				<p>Current Savings: <span className={styles.profileUserBalance}>&#8369; {data.savings}</span></p>
+			</div>
+		)
+	})
+
+	
+	const displayTransactHistory = userTransaction.filter(data => data.user === user.id).map( data => {
 		return ({
 			id: data._id,
 			name: data.name,
@@ -56,7 +81,7 @@ export default function index({user, userTransaction, userCategory}) {
 
 	
 
-	const newData = userCategory.filter( categ => categ.user === user._id)
+	const newData = userCategory.filter( categ => categ.user === user.id)
     const incomeType = newData.filter( data => data.type === 'Income')
     const expenseType = newData.filter( data => data.type === 'Expense')
     const optionIncome = incomeType.map( data => {
@@ -75,18 +100,28 @@ export default function index({user, userTransaction, userCategory}) {
             </option>
         )
     })
-    const [token, setToken] = useState('')
-    const [type, setType] = useState(true);
-    const [name, setName] = useState(true);
-    const [amount, setAmount] = useState('');
-    const [description, setDescription] = useState('');
-	const [imgUrl, setImgUrl] = useState('');
-	const [reset, setReset] = useState('');
 
     useEffect( ()=> {
-        setToken(localStorage['token'])
+		setToken(localStorage['token'])
         setImgUrl(localStorage['imgUrl'])
-    }, [name, type, amount, description, reset])
+		 fetch('https://protected-retreat-88721.herokuapp.com/api/users/details-landing')
+		.then( res => res.json() )
+		.then( data => setLoggedUser(data) )
+		
+    }, [name, type, amount, description])
+
+	useEffect( () => {
+		fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
+		.then( res => res.json() )
+		.then( data => setUserTransaction(data) );
+
+	}, [])
+
+	useEffect( () => {
+		fetch('https://protected-retreat-88721.herokuapp.com/api/category')
+		.then( res => res.json() )
+		.then( data => setUserCategory(data) );
+	}, [])
 
     function addNewTransaction(e) {
         e.preventDefault();
@@ -120,7 +155,7 @@ export default function index({user, userTransaction, userCategory}) {
                         'success'
                     )
                 }
-				setReset('new')
+
             })
             
         } else {
@@ -130,14 +165,13 @@ export default function index({user, userTransaction, userCategory}) {
                 icon: 'error'
             })
         }
-        setReset('')
+
     }
 	
 	async function addCategory(e){
 		Router.push('/categories/new')
-		
 	}
-	
+
   return (
 
     <React.Fragment>
@@ -152,9 +186,7 @@ export default function index({user, userTransaction, userCategory}) {
 				alt='Profile Picture'
 				className={styles.profilePicture}
 			  />
-              <p className={styles.profileUserProfile}></p>
-              <p className={styles.profileUserName}>{lastName}, {firstName}</p>
-              <p>Current Savings: <span className={styles.profileUserBalance}>&#8369; {savings}</span></p>
+              {filterLoggedUser}
             </div>
 
 			<div className={styles.addTransaction} >
@@ -262,45 +294,19 @@ export default function index({user, userTransaction, userCategory}) {
   )
 }
 
-export async function getStaticPaths(){
+// export async function getStaticPaths(){
 	
-	const res = await fetch('https://protected-retreat-88721.herokuapp.com/api/users/details-landing')
-    const data = await res.json();
+// 	const res = await fetch('https://protected-retreat-88721.herokuapp.com/api/users/details-landing')
+//     const data = await res.json();
 	
-	const paths = data.map( user => {
-		return {
-			params : {id : user._id}
-		}
-	})
-	// console.log(paths)
+// 	const paths = data.map( user => {
+// 		return {
+// 			params : {id : user._id}
+// 		}
+// 	})
+// 	// console.log(paths)
 
-	return { paths, fallback:false}
+// 	return { paths, fallback:false}
 
 
-}
-
-export async function getStaticProps({params}){
-
-	const res = await fetch('https://protected-retreat-88721.herokuapp.com/api/users/details-landing')
-
-    const data = await res.json()
-	
-	const user = data.find( user => user._id === params.id)
-	// console.log(user)
-
-	const res1 = await fetch(`https://protected-retreat-88721.herokuapp.com/api/ledger`)
-    const transactionData = await res1.json()
-	const userTransaction = transactionData.filter( user => user.user === params.id)
-
-	const res2 = await fetch(`https://protected-retreat-88721.herokuapp.com/api/category`)
-    const categoryData = await res2.json();
-	const userCategory = categoryData.filter( user => user.user === params.id)
-	return {
-		props : {
-			user,
-			userTransaction,
-			userCategory
-		}
-	}
-}
-
+// }
