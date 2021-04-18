@@ -107,21 +107,16 @@ export default function index() {
 		 fetch('https://protected-retreat-88721.herokuapp.com/api/users/details-landing')
 		.then( res => res.json() )
 		.then( data => setLoggedUser(data) )
-		
-    }, [name, type, amount, description])
 
-	useEffect( () => {
 		fetch('https://protected-retreat-88721.herokuapp.com/api/ledger')
 		.then( res => res.json() )
 		.then( data => setUserTransaction(data) );
 
-	}, [])
-
-	useEffect( () => {
 		fetch('https://protected-retreat-88721.herokuapp.com/api/category')
 		.then( res => res.json() )
 		.then( data => setUserCategory(data) );
-	}, [])
+		
+    }, [name, type, amount, description, userTransaction])
 
     function addNewTransaction(e) {
         e.preventDefault();
@@ -155,7 +150,10 @@ export default function index() {
                         'success'
                     )
                 }
-
+				setType(true)
+				setName(true)
+				setAmount('')
+				setDescription('')
             })
             
         } else {
